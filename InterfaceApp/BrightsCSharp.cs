@@ -10,6 +10,8 @@ namespace InterfaceApp
 	{
 		private List<string> _participantNames {  get; set; } = new List<string>();
 
+		private int _courseYear {  get; set; }
+
 		public string GetCourseParticipantName(int participentIndex) 
 		{
             return _participantNames[participentIndex];
@@ -24,6 +26,16 @@ namespace InterfaceApp
 		public List<string> GetCourseParticipantNames()
 		{
 			return _participantNames;
+		}
+
+		public int GetCourseYear()
+		{
+			return _courseYear;
+		}
+
+		public void SetCourseYear(int year)
+		{
+			_courseYear = year;
 		}
 
 		public string CreatePath()
