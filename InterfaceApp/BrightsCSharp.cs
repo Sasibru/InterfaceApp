@@ -42,10 +42,16 @@ namespace InterfaceApp
 			FileHandling fileHandling = new();
 			fileHandling.WriteToFile(participantList, path);
 		}
-
-		public override string ToString()
+		public void ReadFromFileAndAddToList(string? path = null)
 		{
-			return "";
+			if (path == null)
+			{
+				path = CreatePath();
+			}
+			FileHandling fileHandling = new();
+			fileHandling.ReadFromFile(path);
 		}
+
+
 	}
 }

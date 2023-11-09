@@ -39,18 +39,16 @@ namespace InterfaceApp
 
 		public void ReadFromFile(string path)
 		{
-			Console.Clear();
-			Console.WriteLine("Here is what you currently have in your text file:");
-			Console.WriteLine();
 			try
 			{
+				BrightsCSharp brightsCSharp = new BrightsCSharp();
 				using (StreamReader streamReader = new(path, Encoding.Unicode))
 				{
 					string? text;
 
 					while ((text = streamReader.ReadLine()) != null)
 					{
-						Console.WriteLine(text);
+						brightsCSharp.SignUpForCourse(text);
 					}
 				}
 			}

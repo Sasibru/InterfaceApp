@@ -14,5 +14,7 @@ namespace InterfaceApp
 
 		List<string> GetCourseParticipantNames();
 		void SaveListToFile(List<string> participantList, string? path);
+
+		void ReadFromFileAndAddToList(string path);
 	}
 }

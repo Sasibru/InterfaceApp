@@ -47,5 +47,22 @@ namespace InterfaceApp.UnitTesting
 
 			Assert.That(expected, Is.EqualTo(actual));
 		}
+
+		[Test]
+		public void ReadFromFileAndAddToList_AddNewParticipantsAndCountList_ReturnListCount() 
+		{
+			BrightsCSharp brightsCSharp = new();
+			brightsCSharp.SignUpForCourse("sander");
+			brightsCSharp.SignUpForCourse("sander2");
+			List<string> list = brightsCSharp.GetCourseParticipantNames();
+
+			brightsCSharp.SaveListToFile(list);
+			brightsCSharp.ReadFromFileAndAddToList();
+			int actual = brightsCSharp.GetCourseParticipantNames().Count;
+
+			int expected = 2;
+
+			Assert.That(expected, Is.EqualTo(actual));
+		}
 	}
 }
