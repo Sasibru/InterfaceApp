@@ -80,13 +80,18 @@ namespace InterfaceApp.UnitTesting
 		[Test]
 		public void ReadFromFileAndAddToListHardTyped_AddParticipantsFromFile_ReturnListCount()
 		{
-			BrightsCSharp brightsCSharp = new();
-			brightsCSharp.ReadFromFileAndAddToList(@"C:\Users\SanderSimonsenBrusta\source\repos\02C#Intermediate\Interface\Participants.txt");
-			int actual = brightsCSharp.GetCourseParticipantNames().Count;
+			BrightsCSharp actual = new();
+			string customFilePath = @"C:\Users\SanderSimonsenBrusta\source\repos\02C#Intermediate\Interface\Participants.txt";
+			actual.ReadFromFileAndAddToList(customFilePath);
 
-			int expected = 2;
+			BrightsCSharp expected = new(); 
+			expected.ReadFromFileAndAddToList();
 
-			Assert.That(expected, Is.EqualTo(actual));
+			List<string> actualParticipants = actual.GetCourseParticipantNames();
+			List<string> expectedParticipants = expected.GetCourseParticipantNames();
+
+			Assert.That(expectedParticipants.Count, Is.EqualTo(actualParticipants.Count));
+			CollectionAssert.AreEqual(expectedParticipants, actualParticipants);
 		}
 	}
 }
