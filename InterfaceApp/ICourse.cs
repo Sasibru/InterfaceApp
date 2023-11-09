@@ -13,5 +13,6 @@ namespace InterfaceApp
 		string GetCourseParticipantName(int participentIndex);
 
 		List<string> GetCourseParticipantNames();
+		void SaveListToFile(List<string> participantList, string? path);
 	}
 }

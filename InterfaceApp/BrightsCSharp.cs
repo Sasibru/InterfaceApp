@@ -25,5 +25,27 @@ namespace InterfaceApp
 		{
 			return _participantNames;
 		}
+
+		public string CreatePath()
+		{
+			string projectDir = AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.LastIndexOf(@"\bin") + 1);
+			string pathDefault = projectDir + @"Participants.txt";
+			return pathDefault;
+		}
+
+		public void SaveListToFile(List<string> participantList, string? path = null)
+		{
+			if(path == null)
+			{
+				path = CreatePath();
+			}
+			FileHandling fileHandling = new();
+			fileHandling.WriteToFile(participantList, path);
+		}
+
+		public override string ToString()
+		{
+			return "";
+		}
 	}
 }
