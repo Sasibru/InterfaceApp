@@ -57,7 +57,7 @@ namespace InterfaceApp.UnitTesting
 			brightsCSharp.SignUpForCourse("sander2");
 			List<string> list = brightsCSharp.GetCourseParticipantNames();
 
-			brightsCSharp.SaveListToFile(list);
+			brightsCSharp.WriteListToFile(list);
 			int actual = brightsCSharp.GetCourseParticipantNames().Count;
 
 			int expected = 2;

@@ -8,11 +8,12 @@ namespace InterfaceApp
 {
 	public class BrightsCSharp : ICourse
 	{
-		private List<string> _participantNames {  get; set; } = new List<string>();
+		private static List<string> _participantNames {  get; set; } = new List<string>();
 
 		private int _courseYear {  get; set; }
 
-		public string GetCourseParticipantName(int participentIndex) 
+
+        public string GetCourseParticipantName(int participentIndex) 
 		{
             return _participantNames[participentIndex];
         }
@@ -25,10 +26,17 @@ namespace InterfaceApp
 
 		public List<string> GetCourseParticipantNames()
 		{
-			return _participantNames;
+			List<string> listWithYear = new() { GetCourseYear().ToString() };
+			listWithYear.AddRange(_participantNames);
+			return listWithYear;
 		}
 
-		public int GetCourseYear()
+        public BrightsCSharp()
+        {
+            SetCourseYear();
+        }
+
+        public int GetCourseYear()
 		{
 			return _courseYear;
 		}
@@ -45,7 +53,7 @@ namespace InterfaceApp
 			return pathDefault;
 		}
 
-		public void SaveListToFile(List<string> participantList, string? path = null)
+		public void WriteListToFile(List<string> participantList, string? path = null)
 		{
 			string? pathCheck;
 			if (path == null)
@@ -76,9 +84,5 @@ namespace InterfaceApp
 			fileHandling.ReadFromFile(pathCheck, this);
 		}
 
-		public override string ToString()
-		{
-			return $"{_courseYear}";
-		}
 	}
 }
