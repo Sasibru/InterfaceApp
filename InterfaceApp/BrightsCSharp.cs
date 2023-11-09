@@ -35,21 +35,32 @@ namespace InterfaceApp
 
 		public void SaveListToFile(List<string> participantList, string? path = null)
 		{
-			if(path == null)
+			string? pathCheck;
+			if (path == null)
 			{
-				path = CreatePath();
+				pathCheck = CreatePath();
+			}
+			else
+			{
+				pathCheck = path;
 			}
 			FileHandling fileHandling = new();
-			fileHandling.WriteToFile(participantList, path);
+			fileHandling.WriteToFile(participantList, pathCheck);
 		}
 		public void ReadFromFileAndAddToList(string? path = null)
 		{
+			string? pathCheck;
 			if (path == null)
 			{
-				path = CreatePath();
+				pathCheck = CreatePath();
+			}
+			else
+			{
+				pathCheck = path;
 			}
 			FileHandling fileHandling = new();
-			fileHandling.ReadFromFile(path);
+			BrightsCSharp brightsCSharpInstance = new();
+			fileHandling.ReadFromFile(pathCheck, this);
 		}
 
 

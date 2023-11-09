@@ -37,14 +37,13 @@ namespace InterfaceApp
 			}
 		}
 
-		public void ReadFromFile(string path)
+		public void ReadFromFile(string path, BrightsCSharp brightsCSharp)
 		{
 			try
 			{
-				BrightsCSharp brightsCSharp = new BrightsCSharp();
+				string? text;
 				using (StreamReader streamReader = new(path, Encoding.Unicode))
 				{
-					string? text;
 
 					while ((text = streamReader.ReadLine()) != null)
 					{

@@ -1,3 +1,4 @@
+using System.Text;
 namespace InterfaceApp.UnitTesting
 {
 	public class Tests
@@ -42,14 +43,14 @@ namespace InterfaceApp.UnitTesting
 			brightsCSharp.SignUpForCourse("Test3");
 			brightsCSharp.SignUpForCourse("Test4");
 			List<string> actual = brightsCSharp.GetCourseParticipantNames();
-	
-			List<string> expected = new List<string> {"Test1", "Test2", "Test3", "Test4" };
+
+			List<string> expected = new List<string> { "Test1", "Test2", "Test3", "Test4" };
 
 			Assert.That(expected, Is.EqualTo(actual));
 		}
 
 		[Test]
-		public void ReadFromFileAndAddToList_AddNewParticipantsAndCountList_ReturnListCount() 
+		public void SaveToFile_AddNewParticipantsRenderToFile_ReturnListCount()
 		{
 			BrightsCSharp brightsCSharp = new();
 			brightsCSharp.SignUpForCourse("sander");
@@ -57,7 +58,30 @@ namespace InterfaceApp.UnitTesting
 			List<string> list = brightsCSharp.GetCourseParticipantNames();
 
 			brightsCSharp.SaveListToFile(list);
+			int actual = brightsCSharp.GetCourseParticipantNames().Count;
+
+			int expected = 2;
+
+			Assert.That(expected, Is.EqualTo(actual));
+		}
+
+		[Test]
+		public void ReadFromFileAndAddToListDynamic_AddParticipantsFromFile_ReturnListCount()
+		{
+			BrightsCSharp brightsCSharp = new();
 			brightsCSharp.ReadFromFileAndAddToList();
+			int actual = brightsCSharp.GetCourseParticipantNames().Count;
+
+			int expected = 2;
+
+			Assert.That(expected, Is.EqualTo(actual));
+		}
+
+		[Test]
+		public void ReadFromFileAndAddToListHardTyped_AddParticipantsFromFile_ReturnListCount()
+		{
+			BrightsCSharp brightsCSharp = new();
+			brightsCSharp.ReadFromFileAndAddToList(@"C:\Users\SanderSimonsenBrusta\source\repos\02C#Intermediate\Interface\Participants.txt");
 			int actual = brightsCSharp.GetCourseParticipantNames().Count;
 
 			int expected = 2;
