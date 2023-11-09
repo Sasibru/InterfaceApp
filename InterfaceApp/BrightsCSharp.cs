@@ -33,9 +33,9 @@ namespace InterfaceApp
 			return _courseYear;
 		}
 
-		public void SetCourseYear(int year)
+		public void SetCourseYear(int? year = null)
 		{
-			_courseYear = year;
+			_courseYear = year ?? DateTime.Now.Year;
 		}
 
 		public string CreatePath()
@@ -59,6 +59,7 @@ namespace InterfaceApp
 			FileHandling fileHandling = new();
 			fileHandling.WriteToFile(participantList, pathCheck);
 		}
+
 		public void ReadFromFileAndAddToList(string? path = null)
 		{
 			string? pathCheck;
@@ -75,6 +76,9 @@ namespace InterfaceApp
 			fileHandling.ReadFromFile(pathCheck, this);
 		}
 
-
+		public override string ToString()
+		{
+			return $"{_courseYear}";
+		}
 	}
 }
