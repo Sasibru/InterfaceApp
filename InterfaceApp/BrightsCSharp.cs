@@ -16,7 +16,7 @@ namespace InterfaceApp
 
         public string GetCourseParticipantName(int participentIndex) 
 		{
-            return _participantNames[participentIndex];
+            return new(_participantNames[participentIndex]);
         }
 
 
@@ -28,10 +28,15 @@ namespace InterfaceApp
 
 		public List<string> GetCourseParticipantNames()
 		{
-			List<string> listWithYear = new() { GetCourseYear().ToString() };
-			listWithYear.AddRange(_participantNames);
-			return listWithYear;
+			return new(_participantNames);
 		}
+
+		public List <string> ParticipantListSorted()
+		{
+			List<string> sortedList = new List<string>(_participantNames);
+			sortedList.Sort();
+			return sortedList;
+		} 
 
 
         public BrightsCSharp()
@@ -72,7 +77,7 @@ namespace InterfaceApp
 				pathCheck = path;
 			}
 			FileHandling fileHandling = new();
-			fileHandling.WriteToFile(participantList, pathCheck);
+			fileHandling.WriteToFile(participantList, pathCheck, GetCourseYear());
 		}
 
 
@@ -88,8 +93,8 @@ namespace InterfaceApp
 				pathCheck = path;
 			}
 			FileHandling fileHandling = new();
-			//_participantNames = fileHandling.ReadFromFileWithReturn(pathCheck);
-			fileHandling.ReadFromFile(pathCheck, this);
+			_participantNames = fileHandling.ReadFromFileWithReturn(pathCheck, GetCourseYear());
+			//fileHandling.ReadFromFile(pathCheck, this);
 		}
 
 	}
