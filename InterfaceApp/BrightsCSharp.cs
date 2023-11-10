@@ -8,7 +8,8 @@ namespace InterfaceApp
 {
 	public class BrightsCSharp : ICourse
 	{
-		private static List<string> _participantNames {  get; set; } = new List<string>();
+		private static List<string> _participantNames = new List<string>();
+
 
 		private int _courseYear {  get; set; }
 
@@ -17,6 +18,7 @@ namespace InterfaceApp
 		{
             return _participantNames[participentIndex];
         }
+
 
 		public void SignUpForCourse(string participantName) 
 		{ 
@@ -31,20 +33,24 @@ namespace InterfaceApp
 			return listWithYear;
 		}
 
+
         public BrightsCSharp()
         {
             SetCourseYear();
         }
+
 
         public int GetCourseYear()
 		{
 			return _courseYear;
 		}
 
+
 		public void SetCourseYear(int? year = null)
 		{
 			_courseYear = year ?? DateTime.Now.Year;
 		}
+
 
 		public string CreatePath()
 		{
@@ -52,6 +58,7 @@ namespace InterfaceApp
 			string pathDefault = projectDir + @"Participants.txt";
 			return pathDefault;
 		}
+
 
 		public void WriteListToFile(List<string> participantList, string? path = null)
 		{
@@ -68,6 +75,7 @@ namespace InterfaceApp
 			fileHandling.WriteToFile(participantList, pathCheck);
 		}
 
+
 		public void ReadFromFileAndAddToList(string? path = null)
 		{
 			string? pathCheck;
@@ -80,7 +88,7 @@ namespace InterfaceApp
 				pathCheck = path;
 			}
 			FileHandling fileHandling = new();
-			BrightsCSharp brightsCSharpInstance = new();
+			//_participantNames = fileHandling.ReadFromFileWithReturn(pathCheck);
 			fileHandling.ReadFromFile(pathCheck, this);
 		}
 

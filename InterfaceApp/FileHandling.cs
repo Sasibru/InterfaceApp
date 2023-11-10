@@ -37,6 +37,7 @@ namespace InterfaceApp
 			}
 		}
 
+
 		public void ReadFromFile(string path, BrightsCSharp brightsCSharp)
 		{
 			try
@@ -65,5 +66,38 @@ namespace InterfaceApp
 			}
 
 		}
+
+		/*
+		public List<string> ReadFromFileWithReturn(string path)
+		{
+			List<string> participants = new();
+
+			try
+			{
+				string? text;
+				using (StreamReader streamReader = new(path, Encoding.Unicode))
+				{
+
+					while ((text = streamReader.ReadLine()) != null)
+					{
+						participants.Add(text);
+					}
+				}
+			}
+			catch (FileNotFoundException e)
+			{
+				Console.WriteLine("File could not be found. " + e.Message);
+			}
+			catch (ArgumentException e)
+			{
+				Console.WriteLine("The argument is not valid. " + e.Message);
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine("Could not perform operation." + e.Message);
+			}
+			return participants;
+		}
+		*/
 	}
 }
